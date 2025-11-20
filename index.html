@@ -225,8 +225,8 @@
 
 <section class="parallax-hero" aria-label="Oakland and Macomb County Painting Contractor" style="position:relative; min-height:60vh; overflow:hidden; background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 41, 59, 0.6) 100%), url('./assets/images/hero-about/hero-index-1.jpg'); background-size: cover; background-position: center;">
   <div style="position:relative; z-index:3; display:flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; color: white; text-align: center; padding: 2rem;">
-    <h1 style="font-size: clamp(2rem, 5vw, 3.125rem); font-weight: 800; margin-bottom: 1rem;">Oakland & Macomb County's Trusted Painting Contractor</h1>
-    <p style="max-width: 700px; margin: 0 auto 2rem; font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 600;"><span style="font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700;">Family-Owned and Locally Trusted.</span><br>Dedicated to quality and service for your home or business in Oakland and Macomb Counties.<br><span style="font-weight: 700; color: #fbbf24;">Local Painters - We Don't Subcontract!</span></p>
+    <h1 id="headline-city" style="font-size: clamp(2rem, 5vw, 3.125rem); font-weight: 800; margin-bottom: 1rem;">Oakland & Macomb County's Trusted Painting Contractor</h1>
+    <p style="max-width: 700px; margin: 0 auto 2rem; font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 600;"><span style="font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700;">Family-Owned and Locally Trusted.</span><br>Dedicated to quality and service for your home or business in <span id="service-area">Oakland and Macomb Counties</span>.<br><span style="font-weight: 700; color: #fbbf24;">Local Painters - We Don't Subcontract!</span></p>
     <div style="background-color: #dc2626; padding: 1.5rem 2rem; border-radius: 12px; margin-bottom: 1.5rem; border: 3px solid #fbbf24; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
       <p style="font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; margin: 0 0 0.5rem 0; text-transform: uppercase; letter-spacing: 0.05em;">⚠️ LIMITED SPOTS AVAILABLE! ⚠️</p>
       <p style="font-size: clamp(1.125rem, 3vw, 1.5rem); font-weight: 700; margin: 0;">Book Your Holiday Project NOW Before It's Too Late!</p>
@@ -243,10 +243,10 @@
 </style>
 
 <main class="max-w-5xl mx-auto px-6 py-12">
-  <h2 class="text-3xl font-bold mb-6 text-center">MVP Painting - #1 Trusted Local Painters in Oakland & Macomb Counties</h2>
+  <h2 id="main-heading" class="text-3xl font-bold mb-6 text-center">MVP Painting - #1 Trusted Local Painters in Oakland & Macomb Counties</h2>
   <ul class="list-disc pl-6 space-y-4 text-lg">
     <li><strong>Local Painters - We Don't Subcontract!</strong> Your project is handled by our trusted team from start to finish.</li>
-    <li><strong>Trusted Local Experts</strong> with over 10 years of experience serving Oakland and Macomb Counties.</li>
+    <li><strong>Trusted Local Experts</strong> with over 10 years of experience serving <span id="service-area-2">Oakland and Macomb Counties</span>.</li>
     <li><strong>Licensed & Insured</strong> professionals using premium Sherwin-Williams paints.</li>
     <li><strong>Detail-Oriented Craftsmanship</strong> from prep to final coat, ensuring lasting beauty and protection.</li>
     <li><strong>Flexible Scheduling</strong> to minimize disruptions to your family or business.</li>
@@ -282,6 +282,49 @@
   <p><a href="https://michelletrendsetter.com" class="underline text-white">michelletrendsetter.com</a> | <a href="mailto:michelletrends@gmail.com" class="underline text-white">michelletrends@gmail.com</a> | <a href="tel:+12483219121" class="underline text-white">248.321.9121</a></p>
   <p><a href="contact.html" class="underline text-white">Contact Us</a> | <a href="privacy.html" class="underline text-white">Privacy Policy</a></p>
 </footer>
+
+<script>
+  // Function to get query params
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const city = getQueryParam('city');
+
+    if(city) {
+      // Decode URL-encoded city name (e.g., Sterling%20Heights -> Sterling Heights)
+      const cityName = decodeURIComponent(city);
+      
+      // Update headline
+      const headlineCity = document.getElementById('headline-city');
+      if(headlineCity) {
+        headlineCity.textContent = cityName + "'s Trusted Painting Contractor";
+      }
+      
+      // Update service areas
+      const serviceArea = document.getElementById('service-area');
+      if(serviceArea) {
+        serviceArea.textContent = cityName;
+      }
+      
+      const serviceArea2 = document.getElementById('service-area-2');
+      if(serviceArea2) {
+        serviceArea2.textContent = cityName;
+      }
+      
+      // Update main heading
+      const mainHeading = document.getElementById('main-heading');
+      if(mainHeading) {
+        mainHeading.textContent = "MVP Painting - #1 Trusted Local Painters in " + cityName;
+      }
+      
+      // Update page title
+      document.title = "Trusted Painting Contractor " + cityName + " | MVP Painting";
+    }
+  });
+</script>
 
 </body>
 </html>
